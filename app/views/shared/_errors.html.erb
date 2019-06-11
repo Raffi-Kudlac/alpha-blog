@@ -1,6 +1,21 @@
-<% if @article && @article.errors.any?  %>
-<h2> The Following  errors prevented  the article from being created </h2>
-  <% @article.errors.full_messages.each do |msg| %>
-  <li> <%= msg %> </li>
-  <% end %>
+<% if object && object.errors.any?  %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <%= pluralize(object.errors.count, "error") %>
+              prohibited the action from being completeed
+          </h2>
+          <div class="panel-body">
+            <ul>
+              <% object.errors.full_messages.each do |msg| %>
+                <li> <%= msg %> </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
