@@ -1,0 +1,59 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+  color: white;
+  font-size: 1.7em;
+  float: left;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#logo:hover{
+  color: black;
+
+}
+
+.center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-image: asset-url('city.jpg');
+  background-size: cover;
+  height: 750px;
+  h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    font-weight: bold;
+  }
+}
+
+.btn-xlarge {
+  font-size: 1.7em;
+}
+
+.footer {
+  margin-top: 20px;
+  border-top: 1px solid grey;
+  color: #777;
+
+  a:hover {
+    color: #222;
+  }
+  small {
+    float: left;
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}

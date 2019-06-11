@@ -1,0 +1,13 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Alpha App", root_path,
+        {class: "navbar-brand", id: "logo"} %>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Create a new Article", new_article_path %></li>
+      <li><%= link_to "See all Articles", articles_path %></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
