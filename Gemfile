@@ -15,6 +15,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
