@@ -1,12 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$gml: #eaeaea;
+
 #logo {
   color: white;
   font-size: 1.7em;
   float: left;
   text-transform: uppercase;
   font-weight: bold;
+}
+.article-meta-details {
+  border-top: 1px solid $gml;
+  margin-top: 15px;
 }
 
 .article-actions {

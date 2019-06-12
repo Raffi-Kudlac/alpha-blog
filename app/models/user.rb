@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :email, {presence: true, length: {minimum: 5, maximum: 100},
     uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}}
   before_save {self.email = email.downcase}
+
+  has_secure_password
 end
