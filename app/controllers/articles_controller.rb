@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
 
+  before_action :require_user, {except: [:index, :show]}
   before_action :set_article, {only: [:edit, :update, :destroy, :show]}
+  before_action :require_same_user, {only: [:edit, :update, :destroy]}
 
   def index
     @articles = Article.paginate(page: params[:page], per_page: 10)
@@ -17,7 +19,7 @@ class ArticlesController < ApplicationController
       flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)
     else
-      render  'new'
+      render 'new'
     end
   end
 
@@ -45,6 +47,13 @@ class ArticlesController < ApplicationController
       @article = Article.find_by_id(params[:id])
       if (!@article)
         flash[:danger] = "The requested article could not be found"
+        redirect_to articles_path
+      end
+    end
+
+    def require_same_user
+      if (current_user != @article.user)
+        flash[:danger] = "You can only alter your own article"
         redirect_to articles_path
       end
     end
