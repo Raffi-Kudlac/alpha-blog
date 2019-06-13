@@ -4,12 +4,12 @@
       {class: "navbar-brand", id: "logo"} %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Articles", articles_path %></li>        
+        <li><%= link_to "Articles", articles_path %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", users_path() %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+              <%= "Admin " if current_user().admin? %>Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
@@ -21,6 +21,11 @@
             </ul>
           </li>
         <% else %>
+          <li><%= link_to "User cheat", login_path(:session => {
+            :email=>"example-1@alphaapp.org", :password=> "password"}), method: :post %></li>
+
+          <li><%= link_to "Admin cheat", login_path(:session => {
+            :email=>"admin@alphaapp.org", :password=> "password"}), method: :post %></li>
           <li><%= link_to "Log in", login_path %></li>
           <li><%= link_to "Sign up", signup_path %></li>
         <% end %>

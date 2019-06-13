@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :require_user, {except: [:index, :show]}
   before_action :set_user, {only: [:edit, :update, :destroy, :show]}
   before_action :require_same_user, {only: [:edit, :update, :destroy]}
+  before_action :require_admin, {only: [:destroy]}
 
   def index
     @users = User.paginate(page: params[:page], per_page: 10)
@@ -15,8 +16,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if (@user.save)
+      session[:user_id] = @user.id
       flash[:success] = "Welcome to the Alpha App"
-      redirect_to articles_path
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -38,6 +40,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if !@user.admin?
+      @user.destroy
+      flash[:danger] = "All articles by this user have been deleted"
+      redirect_to users_path
+    else
+      flash[:danger] = "The Admin can not be deleted"
+      redirect_to users+path
+    end
+  end
+
   private
 
   def user_params
@@ -45,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if (current_user() != @user)
+    if (current_user() != @user && !current_user().admin?)
       flash[:danger] = "You can only alter your own user"
       redirect_to root_path
     end
@@ -56,6 +69,13 @@ class UsersController < ApplicationController
     if (!@user)
       flash[:danger] = "The requested User could not be found"
       redirect_to articles_path
+    end
+  end
+
+  def require_admin
+    if logged_in? && !current_user.admin?
+      flash[:danger] = "Only Admins can commit this action"
+      redirect_to root_path
     end
   end
 end
