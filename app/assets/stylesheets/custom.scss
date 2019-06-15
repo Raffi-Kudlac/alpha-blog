@@ -3,6 +3,16 @@
 
 $gml: #eaeaea;
 
+.badge {
+  background-color: $gml;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.input_checkbox input {
+  width: auto !important;
+}
+
 #logo {
   color: white;
   font-size: 1.7em;

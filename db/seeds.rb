@@ -35,3 +35,7 @@ Category.create(name: "Food")
   name = Faker::Ancient.god
   Category.create(name: name)
 end
+
+article = Article.first
+article.categories.push(Category.first)
+article.categories.push(Category.second)

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= form_for @category do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, {class: "form-control",
+            placeholder: "Enter a Category", autofocus: true} %>
+      </div>
+
+      <%= f.submit submit_text, {class: "btn btn-primary"} %>
+      <%= link_to "Back to Category Listing", categories_path,
+        {class: "btn btn-success"} %>
+    <% end %>
+  </div>
+</div>
