@@ -27,3 +27,11 @@ users.each do |user|
     user.articles.create!(description: desc, title: title)
   end
 end
+
+Category.create(name: "Sports")
+Category.create(name: "Food")
+
+10.times do |n|
+  name = Faker::Ancient.god
+  Category.create(name: name)
+end

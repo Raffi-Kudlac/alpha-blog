@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
 
+  before_action :require_admin, except: [:show, :index]
+
   def index
-    @categories = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -22,7 +24,7 @@ class CategoriesController < ApplicationController
 
   end
 
-  private
+  private  
 
   def category_params
     params.require(:category).permit(:name)

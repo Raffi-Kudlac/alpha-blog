@@ -70,12 +70,5 @@ class UsersController < ApplicationController
       flash[:danger] = "The requested User could not be found"
       redirect_to articles_path
     end
-  end
-
-  def require_admin
-    if logged_in? && !current_user.admin?
-      flash[:danger] = "Only Admins can commit this action"
-      redirect_to root_path
-    end
-  end
+  end  
 end
